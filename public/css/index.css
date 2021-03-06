@@ -1,0 +1,461 @@
+@font-face {
+    font-family: Segoe UI; /* Имя шрифта */
+    src: url(../fonts/9404.ttf); /* Путь к файлу со шрифтом */
+}
+
+.form-page {
+    width: 600px;
+    padding: 0 0 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 149px;
+
+    text-align: center;
+
+
+}
+.form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 600px;
+    margin: 0 auto 0;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.data-form {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.payment-block {
+    width: 50%;
+}
+
+.name-block {
+    width: 50%;
+    margin-right: 8px;
+}
+.form input, select {
+    font-family: Segoe UI, sans-serif;
+    color: #0B1F35;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.form button {
+    font-family: Segoe UI, sans-serif;
+    outline: 0;
+    background: #cc2b20 ;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+/*.form button:hover,.form button:active,.form button:focus {*/
+/*    background: #43A047;*/
+/*}*/
+.form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+.form .message a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+.form .register-form {
+    display: none;
+}
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.container:before, .container:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.container .info {
+    margin: 50px auto;
+    text-align: center;
+}
+.container .info h1 {
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 36px;
+    font-weight: 300;
+    color: #1a1a1a;
+}
+.container .info span {
+    color: #4d4d4d;
+    font-size: 12px;
+}
+.container .info span a {
+    color: #000000;
+    text-decoration: none;
+}
+.container .info span .fa {
+    color: #EF3B3A;
+}
+
+.header {
+    display: flex;
+    margin: 20px;
+}
+.login-block-button{
+    display: flex;
+    margin-left: auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.register-link {
+    margin-right: 10px;
+}
+
+.select {
+    position: relative;
+    display: inline-block;
+    height: 49px;
+}
+.select:after {
+    content: "f";
+    padding: 0 8px;
+    font-size: 12px;
+    position: absolute;
+    right: 8px;
+    top: 4px;
+    z-index: 1;
+    text-align: center;
+    width: 10%;
+    height: 100%;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+select {
+    cursor: pointer;
+    padding-right: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+.connection {
+    width: 30px;
+    height: 30px;
+
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    margin-bottom: 30px;
+
+}
+
+.contacts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 13px;
+
+    /*margin-bottom: 30px;*/
+
+}
+
+.contacts a {
+    padding: 15px;
+}
+
+
+
+
+body {
+    background: #ffffff; /* fallback for old browsers */
+    /*background: -webkit-linear-gradient(right, #76b852, #8DC26F);*/
+    /*background: -moz-linear-gradient(right, #76b852, #8DC26F);*/
+    /*background: -o-linear-gradient(right, #76b852, #8DC26F);*/
+    /*background: linear-gradient(to left, #76b852, #8DC26F);*/
+    font-family: Segoe UI, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+     min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding:0
+}
+
+html{
+    height: 100%;
+}
+.notification {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/*.enter-button, .exit-button {*/
+/*    border: 1px solid #333; !* Рамка *!*/
+/*    display: inline-block;*/
+/*    padding: 5px 15px; !* Поля *!*/
+/*    text-decoration: none; !* Убираем подчёркивание *!*/
+/*    color: #000; !* Цвет текста *!*/
+/*}*/
+
+/*.enter-button:hover, .exit-button:hover {*/
+/*    box-shadow: 0 0 5px rgba(0,0,0,0.3); !* Тень *!*/
+/*    background: linear-gradient(to bottom, #fcfff4, #e9e9ce); !* Градиент *!*/
+/*    color: #a00;*/
+/*}*/
+
+.enter-button, .exit-button, .rate-add, .vip-add, .tariff-add {
+    text-transform: uppercase;
+    font-family: Segoe UI, sans-serif;
+    outline: 0;
+    background: #cc2b20 ;
+    width: 100%;
+    border: 0;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+.register-link{
+    padding: 10px;
+
+}
+
+
+.register-link a {
+    text-decoration: none;
+
+    color: #0B1F35;
+}
+
+.register-link a:hover{
+    text-decoration:underline;
+}
+
+.back-link {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 15px;
+}
+.register-link-not-account{
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.remember-link {
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    padding-bottom: 10px;
+}
+
+.back-link a:hover , .register-link-not-account a:hover, .remember-link:hover {
+    text-decoration: underline;
+}
+.back-link a , .register-link-not-account a, .remember-link a {
+    text-decoration: none;
+}
+
+.sum {
+    width: 198px;
+    margin-right: 5px;
+}
+
+
+.table-history-block {
+    height: 270px;
+}
+
+.table-history {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+
+}
+
+.table-history td {
+ ;
+    padding: 10px 15px;
+    position: relative;
+    max-height: 43px;
+}
+
+.table-history th {
+
+    padding: 10px 15px;
+    position: relative;
+    max-height: 43px;
+}
+.logo {
+    border-radius: 5px;
+    position: absolute;
+    border: 1px solid black;
+
+
+}
+
+.logo button {
+
+    font-family: Segoe UI, sans-serif;
+    outline: 0;
+    background: white;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 10px;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+
+.login-email {
+    background: white;
+    border: 1px solid black;
+    font-family: Segoe UI, sans-serif;
+    outline: 0;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.certificate {
+
+    margin-top: 123px;
+
+    font-size: 10px;
+    color: black;
+    text-align: center;
+}
+
+.certificate a:visited{
+    color: black;
+}
+
+.certificate a{
+    color: black;
+}
+
+.on-head {
+    margin-top: 20px;
+}
+
+.navigation {
+    position: absolute;
+    top: 162px;
+    padding-left: 35px;
+
+}
+
+.navigation ul {
+    list-style-type: none;
+}
+
+.navigation li {
+    margin-top: 20px;
+    padding-right: 20px;
+}
+.navigation a:visited {
+    color: black;
+}
+.navigation a {
+    color: black;
+    padding-left: 9px;
+    text-decoration:none;
+}
+
+.navigation div {
+    padding: 5px;
+
+    padding-bottom: 7px;
+    width: 100%;
+
+}
+
+.form-add-rate, .form-add-vip, .form-add-tariff{
+display: flex;
+    flex-wrap: nowrap;
+    margin: auto;
+
+    width: 286px;
+}
+
+
+.rate-sum-add, .vip-mail-add, .tariff-rate {
+    margin-right: 20px;
+}
+
+
+
+.active {
+    border: 1px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.active a {
+    text-decoration:none;
+}
+
+.service-rules {
+    font-size: 10px;
+
+    margin-top: 10px;
+}
+
+.service-rules a {
+    color: #01579b;
+}
+
+.service-rules a:visited{
+    color: #01579b;
+}

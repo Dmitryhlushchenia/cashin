@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="login-page">
+        <div class="registration-form">
+            <form method="post" autocomplete="on" class="main-form">
+
+
+                <div class="main-form__center"> <p class="main-form__title">Регистрация</p></div>
+                <label for="inputEmail" class="main-form__label">Email</label>
+                <input type="email" class="main-form__input form-control" value="" name="email" id="inputEmail"
+                       required autofocus>
+
+                <button   id="submit-btn" class="btn btn-lg btn-primary main-form__submit" type="submit">Зарегистрироваться</button>
+                <div class="back-link">
+                    <a href="{{ path('index') }}">Отмена</a>
+                </div>
+
+            </form>
+        </div>
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+
+    </div>
+{% endblock %}

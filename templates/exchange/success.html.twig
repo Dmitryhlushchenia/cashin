@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    <div class="form">
+        <span class="notification">Заявка на обмен успешно сформирована, информация о деталях заявки отправлена на email {% if data is defined %} {{ data.email }} {% endif %}</span><br><br>
+        <span class="notification">Оплата на счет в АльфаБанк поступит в течение 2 часов часов в рабочее время (ежедневно, с 8:00 до 22:00).</span>
+        <div class="on-head"><a href="{{ path('index') }}">На главную</a></div>
+    </div>
+
+{% endblock %}

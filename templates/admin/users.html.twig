@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+{% block logo %}
+{% endblock %}
+
+{% block table %}
+
+
+
+    <style>
+        .form-page {
+            margin-top: 0;
+        }
+    </style>
+
+    <div class="navigation">
+
+        <ul>
+            <li> <div ><a href="{{ path('admin') }}">Транзакции</a></div></li>
+            <li> <div><a href="{{ path('admin_rates') }}">Курсы</a></div></li>
+            <li> <div><a href="{{ path('admin_vip') }}">VIP</a></div></li>
+            <li><div class="active"><a href="{{ path('admin_users') }}">Пользователи</a></div></li>
+            <li><div><a href="{{ path('admin_tariff') }}?vip=0">Тарифы</a></div></li>
+            <li><div><a href="{{ path('admin_tariff') }}?vip=1">Тарифы VIP</a></div></li>
+        </ul>
+
+
+    </div>
+
+
+
+
+    <div class="table-history-block">
+        <table class="table-history">
+            <tr class="row-head">
+
+                <th>Дата регистрации</th>
+                <th>Номер</th>
+                <th>Email</th>
+                <th>ФИО</th>
+                <th>Принадлежность к VIP</th>
+            </tr>
+
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.date|date('d.m.Y') }}</td>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td> {{ user.secondName }} {{ user.firstName }} {{ user.middleName }}</td>
+                    <td> {% if user.vip %} + {% else %} - {% endif %}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type='text/javascript'
+            src="{{ asset('js/scripts/admin.js') }}"></script>
+{% endblock %}

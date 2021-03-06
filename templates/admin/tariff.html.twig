@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+{% block logo %}
+{% endblock %}
+    {% block body %}
+        <div class="form-add-tariff">
+            <input class="tariff-rate" type="number">
+            <input class="tariff-vip" type="hidden" value="{{ vip }}">
+            <div>
+                <button class="tariff-add">Добавить</button>
+            </div>
+        </div>
+    {% endblock %}
+
+{% block table %}
+
+
+    <style>
+        .form-page {
+            margin-top: 0;
+        }
+    </style>
+
+    <div class="navigation">
+
+        <ul>
+            <li> <div ><a href="{{ path('admin') }}">Транзакции</a></div></li>
+            <li> <div><a href="{{ path('admin_rates') }}">Курсы</a></div></li>
+            <li> <div><a href="{{ path('admin_vip') }}">VIP</a></div></li>
+            <li><div><a href="{{ path('admin_users') }}">Пользователи</a></div></li>
+            <li><div {% if vip == 0 %} class="active" {% endif %}><a href="{{ path('admin_tariff') }}?vip=0">Тарифы</a></div></li>
+            <li><div {% if vip  %} class="active" {% endif %}><a href="{{ path('admin_tariff') }}?vip=1">Тарифы VIP</a></div></li>
+        </ul>
+
+    </div>
+
+
+
+
+
+    <div class="table-history-block">
+
+        <table class="table-history">
+            <tr class="row-head">
+                <th>Дата</th>
+                <th>Тариф</th>
+            </tr>
+
+            {% for tariff in tariffs %}
+                <tr>
+                    <td>{{ tariff.date|date('d.m.Y') }}</td>
+                    <td>{{ tariff.rate }}%</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+
+
+{% endblock %}
+{% block javascripts %}
+    <script type='text/javascript'
+            src="{{ asset('js/scripts/admin.js') }}"></script>
+{% endblock %}

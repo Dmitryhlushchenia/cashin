@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+
+{% block onIndex %}
+    <div class="title-header"><a href="{{ path('index') }}">На главную</a></div>
+
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="form">
+        {% if recovery == 1 %}
+            <span class="notification">Пароль успешно изменен</span>
+        {% else %}
+        <span class="notification">Регистрация успешно завершена</span>
+        {% endif %}
+        <span class="notification"><a href="{{ path('index') }}">Перейти в личный кабинет</a></span>
+    </div>
+
+{% endblock %}

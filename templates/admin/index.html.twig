@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+
+{% block table %}
+
+
+
+    <style>
+        .form-page{
+            margin-top: 0;
+        }
+    </style>
+
+    <div class="navigation">
+
+        <ul>
+            <li> <div class="active"><a href="{{ path('admin') }}">Транзакции</a></div></li>
+            <li> <div><a href="{{ path('admin_rates') }}">Курсы</a></div></li>
+            <li> <div><a href="{{ path('admin_vip') }}">VIP</a></div></li>
+            <li><div><a href="{{ path('admin_users') }}">Пользователи</a></div></li>
+            <li><div><a href="{{ path('admin_tariff') }}?vip=0">Тарифы</a></div></li>
+            <li><div><a href="{{ path('admin_tariff') }}?vip=1">Тарифы VIP</a></div></li>
+        </ul>
+
+
+    </div>
+
+
+
+
+        <div class="table-history-block">
+            <table class="table-history">
+                <tr>
+                    <th>Дата</th>
+                    <th>Номер</th>
+                    <th>Счет</th>
+                    <th>Сумма транзакции</th>
+                    <th>Сумма к оплате</th>
+                    <th>Валюта</th>
+                    <th>Email</th>
+                    <th>Статус</th>
+                </tr>
+
+                {% for payment in payments|reverse(true) %}
+                    <tr>
+                        <td>{{ payment.date|date('d.m.Y') }}</td>
+                        <td>{{ payment.formatId }}</td>
+                        <td>{{ payment.account }}</td>
+                        <td>{{ payment.sumTransaction }}</td>
+                        <td>{{ payment.sumPay }}</td>
+                        <td>{{ payment.currency }}</td>
+                        <td>{{ payment.user.email }}</td>
+                        <td>
+                          <input class="payment-checkbox" data-id = {{ payment.id }} {% if payment.status %}checked disabled {% endif %} type="checkbox">
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type='text/javascript'
+            src="{{ asset('js/scripts/admin.js') }}"></script>
+{% endblock %}

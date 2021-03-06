@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+
+{% block onIndex %}
+    <div class="title-header"><a href="{{ path('index') }}">На главную</a></div>
+
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="form">
+        <span class="notification">{{ error }}</span>
+    </div>
+
+{% endblock %}

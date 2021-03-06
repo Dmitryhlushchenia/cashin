@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+
+
+
+
+
+
+    <div class="form">
+
+        <form action="https://merchant.webmoney.ru/lmi/payment_utf.asp" accept-charset = "UTF-8" content = '' method="post" class="cash-form">
+
+            <input type="hidden" name="LMI_PAYMENT_AMOUNT" value="100">
+            <input type="hidden" name="LMI_PAYMENT_DESC" value="1pxl.ru">
+            <input type="hidden" name="LMI_PAYEE_PURSE" value="Z387080218490">
+
+            <div class="data-form">
+                <div class="name-block">
+                    <input name="secondName"
+                           type="text" {% if is_granted('IS_AUTHENTICATED_FULLY') %} value="{{ app.user.secondName }}" {% endif %}
+                           required placeholder="Фамилия"/>
+                    <input name="firstName"
+                           type="text" {% if is_granted('IS_AUTHENTICATED_FULLY') %} value="{{ app.user.firstName }}" {% endif %}
+                           required placeholder="Имя"/>
+                    <input name="middleName"
+                           type="text" {% if is_granted('IS_AUTHENTICATED_FULLY') %} value="{{ app.user.middleName }}" {% endif %}
+                           placeholder="Отчество"/>
+
+                    <div style=" padding-top: 12px;text-align: left; font-size: 14px">Сумма к оплате: <span class="sum-for-pay">0</span>
+                        WMZ
+                    </div>
+                </div>
+                <div class="payment-block">
+                    <input name="account"
+                           type="text" {% if is_granted('IS_AUTHENTICATED_FULLY') %} value="{{ app.user.account }}" {% endif %}
+                           class="account" required placeholder="Счет"/>
+                    <div style="display: flex; flex-wrap: nowrap">
+                        <div class="sum" style="  width: 73%;
+    margin-right: 5px;"><input type="number" name="sum" class="sum-input" required placeholder="Сумма"/></div>
+                        <div style="width: 27%">
+
+                            <select name="currency" required class="select currency">
+                                <option style="display: none" selected></option>
+                                <option value="USD">USD</option>
+
+                                <option value="RUR">RUR</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <input class="email-input" type="email" {% if is_granted('IS_AUTHENTICATED_FULLY') %} readonly  value="{{ app.user.email }}" {% endif %}
+                           name="email" required placeholder="Email"/>
+
+                    <button>Оплатить</button>
+
+
+                    <div class="service-rules" >Нажимая кнопку "Оплатить" вы подтверждаете свое согласие с  <a target="_blank" href="{{ path('service_rules') }}">Правилами предоставления услуг</a> </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+{% endblock %}
+
+      {% block table %}
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              <div class="table-history-block">
+                  <table class="table-history">
+                      <tr>
+                          <th>Дата</th>
+                          <th>Номер</th>
+                          <th>Счет</th>
+                          <th>Сумма транзакции</th>
+                          <th>Сумма к оплате</th>
+                          <th>Валюта</th>
+                          <th>Статус</th>
+                      </tr>
+
+                      {% for payment in app.user.payments|reverse(true) %}
+                          <tr>
+                              <td>{{ payment.date|date('d.m.Y') }}</td>
+                              <td>{{ payment.formatId }}</td>
+                              <td>{{ payment.account }}</td>
+                              <td>{{ payment.sumTransaction }}</td>
+                              <td>{{ payment.sumPay }}</td>
+                              <td>{{ payment.currency }}</td>
+                              <td>
+                                  {% if payment.status %}
+                                      Оплачено
+                                  {% else %}
+                                      На рассмотрении
+                                  {% endif %}
+                              </td>
+                          </tr>
+                      {% endfor %}
+
+                  </table>
+              </div>
+
+          {% endif %}
+
+      {% endblock %}
+
+
+      {% block footer %}
+          {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+              <div class="certificate"><a href="https://passport.webmoney.ru/asp/certview.asp?wmid=353748377045"
+                                          target=_blank><IMG SRC="{{ asset('/icons/190_wm_service.png') }}"
+                                                             title="Здесь находится аттестат нашего WM идентификатора "
+                                                             border="0"><br>Проверить аттестат</a>
+                  <div style="width: 600px; margin-top: 20px; color: gray">
+
+                  Уведомление о рисках <br>
+
+                      <div style="text-align: left">
+                  Предлагаемые товары и услуги предоставляются не по заказу лица либо предприятия, эксплуатирующего систему WebMoney Transfer. Мы являемся независимым предприятием, оказывающим услуги, и самостоятельно принимаем решения о ценах и предложениях. Предприятия, эксплуатирующие систему WebMoney Transfer, не получают комиссионных вознаграждений или иных вознаграждений за участие в предоставлении услуг и не несут никакой ответственности за нашу деятельность. Аттестация, произведенная со стороны WebMoney Transfer, лишь подтверждает наши реквизиты для связи и удостоверяет личность. Она осуществляется по нашему желанию и не означает, что мы каким-либо образом связаны с продажами операторов системы WebMoney.
+                      </div>
+                  </div>
+              </div>
+            {% endif %}
+      {% endblock %}
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Сервис обмена Webmoney на АльфаБанк." />
+    <meta name="keywords" content="webmoney, АльфаБанк, Альфа-Банк, WMZ, вывод, обмен." />
+    <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
+
+    <title>{% block title %}Обмен Webmoney на Альфа-Банк. CashIn.{% endblock %}</title>
+
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">
+        <button>1PXL.RU</button>
+    </div>
+    {% block onIndex %}
+    {% endblock %}
+
+
+    <div class="login-block-button">
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+            <div style="margin-right: 16px;">
+                <button class="login-email">{{ app.user.email }}</button>
+            </div>
+
+            <div>
+                <button class="exit-button">Выйти</button>
+            </div>
+        {% else %}
+
+            {% if app.request.host != 'admin.1pxl.ru' %}
+            <div style="margin-right: 16px;">
+                <a href="{{ path('app_registration') }}">
+                <button class="login-email ">Регистрация</button>
+                </a>
+            </div>
+            {% endif %}
+            <div>
+                <button class="enter-button">Войти</button>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% block contacts %}
+    {% if app.request.host != 'admin.1pxl.ru' %}
+{% include 'exchange/contacts.html.twig' %}
+    {% endif %}
+
+
+{% endblock %}
+<div class="form-page">
+
+    {% block body %}{% endblock %}
+
+</div>
+
+{% block table %}
+{% endblock %}
+<div class="footer">
+{% block footer %}
+{% endblock %}
+</div>
+{% block javascripts %}{% endblock %}
+
+
+</body>
+
+<script type='text/javascript'
+        src="{{ asset('js/plugins/notify.min.js') }}"></script>
+
+<script type='text/javascript'
+        src="{{ asset('js/scripts/index.js') }}"></script>
+
+</html>

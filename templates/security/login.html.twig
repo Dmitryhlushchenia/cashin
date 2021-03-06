@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="login-page">
+        <div  class="registration-form">
+            <form method="post" autocomplete="on" class="main-form">
+
+
+
+
+                <div class="main-form__center"> <p class="main-form__title_login">Вход</p></div>
+                {% if app.request.host != 'admin.1pxl.ru' %}
+                <div class="register-link-not-account">
+                    <span>нет аккаунта?</span><br>
+
+
+                    <a href="{{ path('app_registration') }}">Зарегистрироваться</a>
+
+                </div>
+                {% endif %}
+
+                <label for="inputEmail" class="main-form__label">Email</label>
+                <input type="email" class="main-form__input form-control" value="{{ last_username }}" name="email" id="inputEmail"
+                       required autofocus>
+                <label for="inputPassword" class="main-form__label">Пароль</label>
+                <input type="password" name="password" id="inputPassword" class="form-control main-form__input" required>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+
+                {#
+                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                    See https://symfony.com/doc/current/security/remember_me.html
+
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Remember me
+                        </label>
+                    </div>
+                #}
+                <div class="remember-link">
+                    <a href="{{ path('passwordRecovery') }}">Забыли пароль?</a>
+                </div>
+                <button   id="submit-btn" class="btn btn-lg btn-primary main-form__submit" type="submit">Войти</button>
+                <div class="back-link">
+                    <a href="{{ path('index') }}">Отмена</a>
+                </div>
+            </form>
+        </div>
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="alert alert-danger">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
+
+    </div>
+
+
+{% endblock %}
